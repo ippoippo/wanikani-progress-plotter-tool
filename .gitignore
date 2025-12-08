@@ -28,3 +28,4 @@ go.work.sum
 # output from program
 
 wanikani_progress.png
+wanikani_progress*png
