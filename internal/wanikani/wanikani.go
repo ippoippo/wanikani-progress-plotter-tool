@@ -2,6 +2,7 @@ package wanikani
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"log/slog"
@@ -61,7 +62,7 @@ func getRawDataFromApi(ctx context.Context, apiKey string) (*levelprogressions.R
 	if resp.StatusCode != http.StatusOK {
 		slog.ErrorContext(ctx, "request failed with non-200 Status Code", slog.Int("status-code", resp.StatusCode),
 			slog.String("raw-body-bytes", string(bodyBytes)), slog.Any("result", result))
-		return nil, err
+		return nil, errors.New("returned non-valid status code")
 	}
 
 	return result, nil
